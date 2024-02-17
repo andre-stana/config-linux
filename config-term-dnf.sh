@@ -1,10 +1,22 @@
 #!/bin/bash
 
+# Déterminer le gestionnaire de paquets
+if [ -x "$(command -v dnf)" ]; then
+    PKG_MANAGER="dnf"
+elif [ -x "$(command -v apt-get)" ]; then
+    PKG_MANAGER="apt-get"
+elif [ -x "$(command -v pacman)" ]; then
+    PKG_MANAGER="pacman -S"
+else
+    echo "Votre gestionnaire de paquets n'est pas supporté. Vous devez installer manuellement : git, zsh et wget."
+    exit 1
+fi
+
 # Installer les paquets nécessaires
-sudo dnf install -y git zsh wget
+sudo $PKG_MANAGER install -y git zsh wget
 
 # Télécharger et installer oh-my-zsh
-sh -c "$(wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"
+RUNZSH=no sh -c "$(wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"
 
 # Cloner les plugins zsh
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
