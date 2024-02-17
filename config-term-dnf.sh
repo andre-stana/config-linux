@@ -8,12 +8,12 @@ elif [ -x "$(command -v apt-get)" ]; then
 elif [ -x "$(command -v pacman)" ]; then
     PKG_MANAGER="pacman -S"
 else
-    echo "Votre gestionnaire de paquets n'est pas supporté. Vous devez installer manuellement : git, zsh et wget."
+    echo "Votre gestionnaire de paquets n'est pas supporté. Vous devez installer manuellement : git, zsh, wget et emacs."
     exit 1
 fi
 
 # Installer les paquets nécessaires
-sudo $PKG_MANAGER install -y git zsh wget
+sudo $PKG_MANAGER install -y git zsh wget emacs
 
 # Télécharger et installer oh-my-zsh
 RUNZSH=no sh -c "$(wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"
