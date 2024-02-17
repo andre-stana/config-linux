@@ -41,5 +41,5 @@ plugins=(git zsh-autosuggestions zsh-syntax-highlighting web-search macos docker
 source $ZSH/oh-my-zsh.sh
 EOF
 
-# Charger le nouveau fichier .zshrc
-source ~/.zshrc
+# Remplacer le shell actuel par zsh
+exec zsh -l
