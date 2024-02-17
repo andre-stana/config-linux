@@ -48,8 +48,8 @@ source $ZSH/oh-my-zsh.sh
 EOF
 
 # Télécharger et installer Visual Studio Code
-wget -O vscode.deb $VS_CODE_PKG
-$INSTALL_CMD ./vscode.deb
+wget -O vscode.rpm $VS_CODE_PKG
+$INSTALL_CMD ./vscode.rpm
 
 # Remplacer le shell actuel par zsh
 exec zsh -l
