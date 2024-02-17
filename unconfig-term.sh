@@ -31,12 +31,5 @@ rm -f ~/.zshrc
 # Désinstaller les paquets
 sudo $PKG_MANAGER $REMOVE_COMMAND -y git zsh wget
 
-# Changer le shell par défaut à l'ancien shell
-if [ -f ~/.default_shell ]; then
-    chsh -s $(cat ~/.default_shell)
-    rm ~/.default_shell
-else
-    echo "Impossible de rétablir le shell par défaut, le fichier ~/.default_shell n'existe pas."
-fi
-
-echo $SHELL > ~/.bash
+# Changer le shell par défaut en bash
+chsh -s $(which bash)
