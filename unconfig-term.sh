@@ -11,7 +11,7 @@ elif [ -x "$(command -v pacman)" ]; then
     PKG_MANAGER="pacman"
     REMOVE_COMMAND="-Rns"
 else
-    echo "Votre gestionnaire de paquets n'est pas supporté. Vous devez désinstaller manuellement : git, zsh et wget."
+    echo "Votre gestionnaire de paquets n'est pas supporté. Vous devez désinstaller manuellement : git, zsh, wget, emacs et vscode."
     exit 1
 fi
 
@@ -29,7 +29,16 @@ rm -rf ~/.oh-my-zsh
 rm -f ~/.zshrc
 
 # Désinstaller les paquets
-sudo $PKG_MANAGER $REMOVE_COMMAND -y git zsh wget
+sudo $PKG_MANAGER $REMOVE_COMMAND -y git zsh wget emacs
+
+# Désinstaller Visual Studio Code
+if [ "$PKG_MANAGER" = "apt-get" ]; then
+    sudo apt-get remove code
+elif [ "$PKG_MANAGER" = "dnf" ]; then
+    sudo dnf remove code
+elif [ "$PKG_MANAGER" = "pacman" ]; then
+    sudo pacman -Rns code
+fi
 
 # Changer le shell par défaut en bash
 chsh -s $(which bash)
