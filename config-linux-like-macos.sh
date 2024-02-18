@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Mettre à jour et installer les paquets nécessaires
-sudo dnf update -y && sudo dnf upgrade -y
+sudo dnf update -y
 sudo dnf install -y gnome-tweaks git flatpak
 
 # Installer les extensions flatpak
